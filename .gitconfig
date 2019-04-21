@@ -1,0 +1,17 @@
+[user]
+    name = DF_XYZ
+    email = dfxyz1@gmail.com
+
+[alias]
+    br = branch
+    co = checkout
+    cm = commit
+    amd = commit -a --amend
+    lg = log --graph \
+        --format='%C(cyan)%h%Creset %s %Cgreen%cr %C(yellow)(%an)%Creset'
+    mg = merge --no-ff
+    pf = push -f
+    st = status
+
+[push]
+    default = simple

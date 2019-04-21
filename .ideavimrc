@@ -1,0 +1,7 @@
+set clipboard^=unnamed
+set incsearch
+set hlsearch
+set visualbell
+
+vnoremap <C-C> y
+nnoremap Y y$

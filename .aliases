@@ -1,0 +1,42 @@
+[[ $EUID != 0 ]] && [[ -n $(command -v sudo) ]] \
+    && SUDO='sudo ' \
+    || SUDO=''
+
+alias vi='vim'
+
+alias less='less -r'
+
+alias ls='ls -hF --color=auto'
+alias la='ls -A'
+alias ll='ls -al'
+
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+alias diff='diff --color=auto'
+
+alias sc="${SUDO}systemctl"
+
+if [[ -n $(command -v pacman) ]]; then
+    alias pac="${SUDO}pacman -S"
+    alias pacs='pacman -Ss'
+    alias pacy="${SUDO}pacman -Sy"
+    alias pacu="${SUDO}pacman -Syu"
+    alias pacr="${SUDO}pacman -Rsn"
+    alias paci='pacman -Si'
+    alias pacl='pacman -Ql | sed "s/^\(\w\+\).*/\1/g" | uniq | less'
+fi
+
+if [[ -n $(command -v apt-get) ]]; then
+    alias apt="${SUDO}apt-get install"
+    alias apty="${SUDO}apt-get update"
+    alias aptu="${SUDO}apt-get upgrade"
+    alias aptr="${SUDO}apt-get remove"
+    alias aptar="${SUDO}apt-get autoremove"
+    alias aptp="${SUDO}apt-get purge"
+    alias apts="apt-cache search"
+    alias apti="apt-cache show"
+fi
+
+unset SUDO
