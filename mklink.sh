@@ -1,9 +1,9 @@
 #!bash
 
 cd $(dirname $0)
-for file in $(ls -A | grep "^\."); do
+for file in $(echo .*); do
     case $file in
-        .git|.gitignore)
+        .|..|.git|.gitignore)
             continue
             ;;
         *)
