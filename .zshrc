@@ -36,5 +36,5 @@ bindkey "^[[3;5~"   delete-word             # Ctrl-Delete
 bindkey "^_"        backward-delete-word    # Ctrl-Backspace
 
 # Source exports & aliases
-source '.exports' 2>/dev/null 
-source '.aliases' 2>/dev/null 
+[[ -e '.exports' ]] && source '.exports'
+[[ -e '.aliases' ]] && source '.aliases'
