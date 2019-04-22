@@ -1,7 +1,7 @@
 " DF_XYZ's Vim Configuration
 
 " General: {
-    if has("win32") || has("win64")
+    if has("win32")
         set runtimepath^=$HOME/.vim
         set packpath^=$HOME/.vim
     endif
@@ -72,12 +72,12 @@
     autocmd GUIEnter * set t_vb=
 
     if has("gui_running")
-        if has("win32") || has("win64")
+        if has("win32")
             source $VIMRUNTIME/delmenu.vim
             source $VIMRUNTIME/menu.vim
         endif
 
-        if has("win32") || has("win64")
+        if has("win32")
             set guifont=Ubuntu_Mono:h12
         else
             set guifont=Ubuntu\ Mono\ 12
