@@ -1,4 +1,4 @@
-# DF_XYZ's ZShell Configurations
+# DF_XYZ's Zsh Configurations
 
 # History
 HISTFILE=~/.histfile
@@ -8,7 +8,7 @@ SAVEHIST=1000
 # Completion
 autoload -Uz compinit
 compinit
-if [[ $OS == "Windows_NT" ]]; then
+if [[ -n $MSYSTEM ]]; then
     DRIVES=$(mount | sed -n 's|^[A-Z]: on /\([a-z]\).*|\1|p')
     zstyle ':completion:*' fake-files /: "/:$DRIVES"
     unset DRIVES
@@ -36,5 +36,5 @@ bindkey "^[[3;5~"   delete-word             # Ctrl-Delete
 bindkey "^_"        backward-delete-word    # Ctrl-Backspace
 
 # Source exports & aliases
-[[ -e '.exports' ]] && source '.exports'
-[[ -e '.aliases' ]] && source '.aliases'
+[[ -e ~/.exports ]] && source ~/.exports
+[[ -e ~/.aliases ]] && source ~/.aliases
