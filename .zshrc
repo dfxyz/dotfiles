@@ -19,7 +19,9 @@ autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git*' formats $'\e[36m(%b)\e[0m'
 setopt PROMPT_SUBST
-PROMPT=$'\e[32m%n@%m\e[0m \e[33m%~\e[0m ${vcs_info_msg_0_}\n%(!.#.$) '
+[[ -n $SSH_CONNECTION ]] && remoteMarker=*
+PS1=$'\e[32m%n@%m\e[0m$remoteMarker \e[33m%~\e[0m ${vcs_info_msg_0_}\n'
+PS1=$PS1'%(!.#.$) '
 precmd() { 
     print -Pn "\e]0;zsh: %~\a"
     vcs_info

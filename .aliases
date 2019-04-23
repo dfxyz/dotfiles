@@ -1,6 +1,4 @@
-[[ $EUID != 0 ]] && [[ -n $(command -v sudo) ]] \
-    && SUDO='sudo ' \
-    || SUDO=''
+[[ $EUID != 0 ]] && [[ -n $(command -v sudo) ]] && sudo='sudo '
 
 alias vi='vim'
 
@@ -16,27 +14,27 @@ alias fgrep='fgrep --color=auto'
 
 alias diff='diff --color=auto'
 
-alias sc="${SUDO}systemctl"
+alias sc="${sudo}systemctl"
 
 if [[ -n $(command -v pacman) ]]; then
-    alias pac="${SUDO}pacman -S"
+    alias pac="${sudo}pacman -S"
     alias pacs='pacman -Ss'
-    alias pacy="${SUDO}pacman -Sy"
-    alias pacu="${SUDO}pacman -Syu"
-    alias pacr="${SUDO}pacman -Rsn"
+    alias pacy="${sudo}pacman -Sy"
+    alias pacu="${sudo}pacman -Syu"
+    alias pacr="${sudo}pacman -Rsn"
     alias paci='pacman -Si'
     alias pacl='pacman -Ql | sed "s/^\(\w\+\).*/\1/g" | uniq | less'
 fi
 
 if [[ -n $(command -v apt-get) ]]; then
-    alias apt="${SUDO}apt-get install"
-    alias apty="${SUDO}apt-get update"
-    alias aptu="${SUDO}apt-get upgrade"
-    alias aptr="${SUDO}apt-get remove"
-    alias aptar="${SUDO}apt-get autoremove"
-    alias aptp="${SUDO}apt-get purge"
+    alias apt="${sudo}apt-get install"
+    alias apty="${sudo}apt-get update"
+    alias aptu="${sudo}apt-get upgrade"
+    alias aptr="${sudo}apt-get remove"
+    alias aptar="${sudo}apt-get autoremove"
+    alias aptp="${sudo}apt-get purge"
     alias apts="apt-cache search"
     alias apti="apt-cache show"
 fi
 
-unset SUDO
+unset sudo
