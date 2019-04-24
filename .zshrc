@@ -1,6 +1,7 @@
 # DF_XYZ's Zsh Configurations
 
 # History
+setopt nohistsavebycopy
 HISTFILE=~/.zhistory
 HISTSIZE=1000
 SAVEHIST=1000
@@ -15,10 +16,10 @@ if [[ -n $MSYSTEM ]]; then
 fi
 
 # Window title & prompt
+setopt promptsubst
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git*' formats $'\e[36m(%b)\e[0m'
-setopt PROMPT_SUBST
 [[ -n $SSH_CONNECTION ]] && remoteMarker=*
 PS1=$'\e]0;zsh: %~\a'
 PS1=$PS1$'\e[32m%n@%m\e[0m$remoteMarker \e[33m%~\e[0m ${vcs_info_msg_0_}\n'
