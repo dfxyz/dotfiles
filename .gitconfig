@@ -2,6 +2,9 @@
     name = DF_XYZ
     email = dfxyz1@gmail.com
 
+[push]
+    default = simple
+
 [alias]
     br = branch
     co = checkout
@@ -12,6 +15,3 @@
     mg = merge --no-ff
     pf = push -f
     st = status
-
-[push]
-    default = simple
