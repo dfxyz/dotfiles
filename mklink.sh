@@ -1,5 +1,3 @@
-#!bash
-
 cd $(dirname $0)
 for file in $(echo .*); do
     case $file in
