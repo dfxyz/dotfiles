@@ -1,7 +1,7 @@
 # DF_XYZ's Zsh Configurations
 
 # History
-HISTFILE=~/.zsh_history
+HISTFILE=~/.zhistory
 HISTSIZE=1000
 SAVEHIST=1000
 
