@@ -114,4 +114,8 @@
     nnoremap <silent> <F4> :tabnew<CR>
 " }
 
+" Others: {
+    let g:is_bash=1
+" }
+
 " vim: fdm=marker fmr={,}

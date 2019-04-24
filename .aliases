@@ -38,3 +38,5 @@ if [[ -n $(command -v apt-get) ]]; then
 fi
 
 unset sudo
+
+# vim: ft=sh
