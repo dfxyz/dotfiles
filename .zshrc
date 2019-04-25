@@ -28,7 +28,9 @@ precmd() { vcs_info }
 
 # Key bindings
 bindkey "^[[H"      beginning-of-line       # Home
+bindkey "^[[1~"     beginning-of-line       # Home
 bindkey "^[[F"      end-of-line             # End
+bindkey "^[[4~"     end-of-line             # End
 bindkey "^[[5~"     beginning-of-history    # PageUp
 bindkey "^[[6~"     end-of-history          # PageDown
 bindkey "^[[2~"     overwrite-mode          # Insert
