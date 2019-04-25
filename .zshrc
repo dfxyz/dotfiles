@@ -1,7 +1,12 @@
 # DF_XYZ's Zsh Configurations
 
+# General Options
+setopt KSH_ARRAYS
+unsetopt FLOW_CONTROL
+
 # History
-setopt nohistsavebycopy
+setopt HIST_IGNORE_ALL_DUPS
+unsetopt HIST_SAVE_BY_COPY
 HISTFILE=~/.zhistory
 HISTSIZE=1000
 SAVEHIST=1000
@@ -16,7 +21,7 @@ if [[ -n $MSYSTEM ]]; then
 fi
 
 # Window title & prompt
-setopt promptsubst
+setopt PROMPT_SUBST
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git*' formats $'\e[36m(%b)\e[0m'
