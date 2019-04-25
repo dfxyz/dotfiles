@@ -42,6 +42,8 @@ bindkey "^[[2~"     overwrite-mode          # Insert
 bindkey "^[[3~"     delete-char             # Delete
 bindkey "^[[3;5~"   delete-word             # Ctrl-Delete
 bindkey "^_"        backward-delete-word    # Ctrl-Backspace
+bindkey "^[[1;5D"   backward-word           # Ctrl-Left
+bindkey "^[[1;5C"   forward-word            # Ctrl-Right
 
 # Source exports & aliases
 [[ -e ~/.exports ]] && source ~/.exports
