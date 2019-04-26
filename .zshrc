@@ -1,12 +1,10 @@
 # DF_XYZ's Zsh Configurations
 
 # General Options
-setopt KSH_ARRAYS
-unsetopt FLOW_CONTROL
+setopt KSH_ARRAYS NO_FLOW_CONTROL
 
 # History
 setopt HIST_IGNORE_ALL_DUPS
-unsetopt HIST_SAVE_BY_COPY
 HISTFILE=~/.zhistory
 HISTSIZE=1000
 SAVEHIST=1000
