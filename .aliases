@@ -1,4 +1,4 @@
-[[ $EUID != 0 ]] && [[ -n $(command -v sudo) ]] && sudo='sudo '
+[[ $EUID != 0 ]] && [[ -n $(command -v sudo) ]] && sudo='sudo ' && alias sudo='sudo '
 
 alias vi='vim'
 
