@@ -30,7 +30,7 @@
 " }
 
 " Color Scheme: {
-    set background=light
+    set background=dark
     set termguicolors
     colorscheme CandyPaper
 " }
