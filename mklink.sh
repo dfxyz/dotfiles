@@ -20,7 +20,7 @@ for file in $(echo .*); do
             [[ -n $(command -v zsh) ]] && mklink $file
             ;;
         .ideavimrc)
-            [[ -n $(ls ~/.Idea*) ]] && mklink $file
+            [[ -n $(ls ~/.Idea* 2>/dev/null) ]] && mklink $file
             ;;
         .mintty)
             [[ -n $(command -v mintty) ]] && mklink $file
