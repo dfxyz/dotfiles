@@ -1,0 +1,100 @@
+# sshh & scph, helper functions for ssh & scp {
+__sshh_list=~/.ssh/sshh_list
+
+function __sshh_usage() {
+    echo 'usage: sshh [-e | ENTRY_NUMBE]'
+}
+
+function __sshh_load() {
+    __sshh_entries=($(cat $__sshh_list 2> /dev/null))
+    if [[ ${#__sshh_entries[@]} -eq 0 ]]; then
+        echo 'sshh: no saved entry.'
+        return 1
+    fi
+    return 0
+}
+
+function __sshh_print() {
+    local size=${#__sshh_entries[@]}
+    for (( i=0; i<$size; i++ )); do
+        echo "[$i] ${__sshh_entries[$i]}"
+    done
+}
+
+function __sshh_get() {
+    local entry=${__sshh_entries[$1]}
+    if [[ -z $entry ]]; then
+        echo "sshh: invalid entry number '$1'."
+        return 1
+    fi
+    __sshh_entry=($(sed 's/:/ /g' <<< $(echo $entry)))
+    if [[ ${#__sshh_entry[@]} -gt 2 ]]; then
+        echo "sshh: invalid entry '$entry' ($1)."
+        return 1
+    fi
+    return 0
+}
+
+function __sshh_connect() {
+    local cmd="ssh ${__sshh_entry[0]}"
+    [[ -n ${__sshh_entry[1]} ]] && cmd="$cmd -p ${__sshh_entry[1]}"
+    $cmd
+}
+
+function sshh() {
+    if [[ -z $1 ]]; then
+        __sshh_load || return $?
+        __sshh_print
+        return 0
+    fi
+
+    if [[ $1 == "-e" ]]; then
+        $EDITOR $__sshh_list
+        return $?
+    fi
+
+    if [[ $1 =~ ^[0-9]*$ ]]; then
+        __sshh_load || return $?
+        __sshh_get $1 || return $?
+        __sshh_connect
+        return 0
+    fi
+
+    __sshh_usage
+}
+
+function __scph_usage() {
+    echo 'usage: scph [ENTRY_NUMBER:]SRC ... [ENTRY_NUMBER:]DST'
+}
+
+function scph() {
+    if [[ ${#@} -lt 2 ]]; then
+        __scph_usage
+        return 0
+    fi
+
+    __sshh_load || return $?
+
+    local cmd='scp'
+    for i in $@; do
+        local group=($(sed 's/^\([0-9]\+\)\(:.*\)$/\1 \2/' <<< $(echo $i)))
+        local size=${#group[@]}
+        if [[ $size -eq 1 ]]; then
+            cmd="$cmd $group"
+        else
+            local entry_number=${group[0]}
+            local path=${group[1]}
+
+            __sshh_get $entry_number || return $?
+
+            cmd="$cmd ${__sshh_entry[0]}$path"
+            local port=${__sshh_entry[1]}
+            [[ -n $port ]] && port=" -P $port"
+        fi
+    done
+    cmd="$cmd$port"
+    $cmd
+}
+# }
+
+# vim: ft=sh fdm=marker fmr={,}
