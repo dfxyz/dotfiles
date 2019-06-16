@@ -1,7 +1,7 @@
 # DF_XYZ's Bash Configurations
 
 # Window title & prompt
-[[ -n $SSH_CONNECTION ]] && { remoteMarker=*; remoteTitle=' (remote)' }
+[[ -n $SSH_CONNECTION ]] && { remoteMarker=*; remoteTitle=' (remote)'; }
 [[ $EUID -ne 0 ]] && promptMarker=$ || promptMarker=#
 PS1=$'\e]0;bash: $PWD$remoteTitle\a'
 PS1=$PS1$'\e[32m\u@\h\e[0m$remoteMarker \e[33m\w\e[0m'

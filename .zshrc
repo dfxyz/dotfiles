@@ -23,7 +23,7 @@ setopt PROMPT_SUBST
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git*' formats $'\e[36m(%b)\e[0m'
-[[ -n $SSH_CONNECTION ]] && { remoteMarker=*; remoteTitle=' (remote)' }
+[[ -n $SSH_CONNECTION ]] && { remoteMarker=*; remoteTitle=' (remote)'; }
 PS1=$'\e]0;zsh: %~$remoteTitle\a'
 PS1=$PS1$'\e[32m%n@%m\e[0m$remoteMarker \e[33m%~\e[0m ${vcs_info_msg_0_}\n'
 PS1=$PS1'%(!.#.$) '
