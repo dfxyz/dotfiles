@@ -1,12 +1,32 @@
+#!bash
+
+[[ -n $MSYSTEM ]] && export MSYS=winsymlinks:nativestrict
+
+function mklink() {
+    rm -rf $HOME/$1
+    ln -s $PWD/$1 $HOME
+}
+
 cd $(dirname $0)
 for file in $(echo .*); do
     case $file in
         .|..|.git|.gitignore)
             continue
             ;;
+        .bashrc)
+            [[ -n $(command -v bash) ]] && mklink $file
+            ;;
+        .zshrc)
+            [[ -n $(command -v zsh) ]] && mklink $file
+            ;;
+        .ideavimrc)
+            [[ -n $(ls ~/.Idea*) ]] && mklink $file
+            ;;
+        .mintty)
+            [[ -n $(command -v mintty) ]] && mklink $file
+            ;;
         *)
-            rm -rf $HOME/$file
-            ln -s $PWD/$file $HOME
+            mklink $file
             ;;
     esac
 done
