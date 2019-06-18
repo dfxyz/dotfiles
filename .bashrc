@@ -1,5 +1,8 @@
 # DF_XYZ's Bash Configurations
 
+# Source global definitions
+[[ -f /etc/bashrc ]] && source /etc/bashrc
+
 # Window title & prompt
 [[ -n $SSH_CONNECTION ]] && { remoteMarker=*; remoteTitle=' (remote)'; }
 [[ $EUID -ne 0 ]] && promptMarker=$ || promptMarker=#
@@ -19,6 +22,6 @@ fi
 PS1=$PS1$'\n$promptMarker '
 
 # Source exports & aliases
-[[ -e ~/.exports ]] && source ~/.exports
-[[ -e ~/.aliases ]] && source ~/.aliases
-[[ -e ~/.functions ]] && source ~/.functions
+[[ -f ~/.exports ]] && source ~/.exports
+[[ -f ~/.aliases ]] && source ~/.aliases
+[[ -f ~/.functions ]] && source ~/.functions

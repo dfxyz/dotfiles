@@ -44,6 +44,6 @@ bindkey "^[[1;5D"   backward-word           # Ctrl-Left
 bindkey "^[[1;5C"   forward-word            # Ctrl-Right
 
 # Source exports & aliases
-[[ -e ~/.exports ]] && source ~/.exports
-[[ -e ~/.aliases ]] && source ~/.aliases
-[[ -e ~/.functions ]] && source ~/.functions
+[[ -f ~/.exports ]] && source ~/.exports
+[[ -f ~/.aliases ]] && source ~/.aliases
+[[ -f ~/.functions ]] && source ~/.functions
