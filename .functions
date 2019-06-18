@@ -27,7 +27,7 @@ function __sshh_get() {
         echo "sshh: invalid entry number '$1'."
         return 1
     fi
-    __sshh_entry=($(sed 's/:/ /g' <<< $(echo $entry)))
+    __sshh_entry=($(sed 's/:/ /g' <<< $entry))
     if [[ ${#__sshh_entry[@]} -gt 2 ]]; then
         echo "sshh: invalid entry '$entry' ($1)."
         return 1
@@ -79,7 +79,7 @@ function scph() {
 
     local args=
     for i in $@; do
-        local group=($(sed 's/^\([0-9]\+\)\(:.*\)$/\1 \2/' <<< $(echo $i)))
+        local group=($(sed 's/^\([0-9]\+\)\(:.*\)$/\1 \2/' <<< $i))
         local size=${#group[@]}
         if [[ $size -eq 1 ]]; then
             args="$args $group"
