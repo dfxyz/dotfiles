@@ -2,7 +2,7 @@
 __sshh_list=~/.ssh/sshh_list
 
 function __sshh_usage() {
-    echo 'usage: sshh [-e | ENTRY_NUMBE]'
+    echo 'usage: sshh [-e | ENTRY_NUMBER]'
 }
 
 function __sshh_load() {
@@ -36,9 +36,11 @@ function __sshh_get() {
 }
 
 function __sshh_connect() {
-    local cmd="ssh ${__sshh_entry[0]}"
-    [[ -n ${__sshh_entry[1]} ]] && cmd="$cmd -p ${__sshh_entry[1]}"
-    $cmd
+    if [[ -n ${__sshh_entry[1]} ]]; then
+        eval "ssh -p ${__sshh_entry[1]} ${__sshh_entry[0]}"
+    else
+        eval "ssh ${__sshh_entry[0]}"
+    fi
 }
 
 function sshh() {
@@ -75,25 +77,24 @@ function scph() {
 
     __sshh_load || return $?
 
-    local cmd='scp'
+    local args=
     for i in $@; do
         local group=($(sed 's/^\([0-9]\+\)\(:.*\)$/\1 \2/' <<< $(echo $i)))
         local size=${#group[@]}
         if [[ $size -eq 1 ]]; then
-            cmd="$cmd $group"
+            args="$args $group"
         else
             local entry_number=${group[0]}
-            local path=${group[1]}
+            local colon_path=${group[1]}
 
             __sshh_get $entry_number || return $?
 
-            cmd="$cmd ${__sshh_entry[0]}$path"
+            args="$args ${__sshh_entry[0]}$colon_path"
             local port=${__sshh_entry[1]}
-            [[ -n $port ]] && port=" -P $port"
+            [[ -n $port ]] && port="-P $port"
         fi
     done
-    cmd="$cmd$port"
-    $cmd
+    eval "scp $port $args"
 }
 # }
 
