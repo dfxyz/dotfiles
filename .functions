@@ -1,4 +1,4 @@
-# sshh & scph, helper functions for ssh & scp {
+# helper functions {
 __sshh_list=~/.ssh/sshh_list
 
 function __sshh_usage() {
@@ -64,38 +64,5 @@ function sshh() {
 
     __sshh_usage
 }
-
-function __scph_usage() {
-    echo 'usage: scph [ENTRY_NUMBER:]SRC ... [ENTRY_NUMBER:]DST'
-}
-
-function scph() {
-    if [[ ${#@} -lt 2 ]]; then
-        __scph_usage
-        return 0
-    fi
-
-    __sshh_load || return $?
-
-    local args=
-    for i in $@; do
-        local group=($(sed 's/^\([0-9]\+\)\(:.*\)$/\1 \2/' <<< $i))
-        local size=${#group[@]}
-        if [[ $size -eq 1 ]]; then
-            args="$args $group"
-        else
-            local entry_number=${group[0]}
-            local colon_path=${group[1]}
-
-            __sshh_get $entry_number || return $?
-
-            args="$args ${__sshh_entry[0]}$colon_path"
-            local port=${__sshh_entry[1]}
-            [[ -n $port ]] && port="-P $port"
-        fi
-    done
-    eval "scp $port $args"
-}
-# }
 
 # vim: ft=sh fdm=marker fmr={,}
