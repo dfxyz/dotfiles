@@ -5,5 +5,3 @@ set visualbell
 
 vnoremap <C-C> y
 nnoremap Y y$
-inoremap <C-P> <C-O>:action HippieCompletion<CR>
-inoremap <C-N> <C-O>:action HippieBackwardCompletion<CR>
