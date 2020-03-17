@@ -108,12 +108,11 @@
 " Keymaps: {
     noremap <C-S> :update<CR>
     inoremap <C-S> <C-O>:update<CR>
-    vnoremap <C-X> x
     vnoremap <C-C> y
     nnoremap <C-V> P
     inoremap <C-V> <C-O>P
     nnoremap Y y$
-    nnoremap <silent> <F4> :tabnew<CR>
+    nnoremap <F4> :tabnew<CR>
 " }
 
 " Others: {
