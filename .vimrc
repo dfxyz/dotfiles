@@ -113,6 +113,8 @@
     inoremap <C-V> <C-O>P
     nnoremap Y y$
     nnoremap <F4> :tabnew<CR>
+    vnoremap p "_dP
+    vnoremap P "_dP
 " }
 
 " Others: {

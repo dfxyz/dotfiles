@@ -24,4 +24,4 @@ PS1=$PS1$'\n$promptMarker '
 # Source exports & aliases
 [[ -f ~/.exports ]] && source ~/.exports
 [[ -f ~/.aliases ]] && source ~/.aliases
-[[ -f ~/.functions ]] && source ~/.functions
+[[ -f ~/.sshh ]] && source ~/.sshh

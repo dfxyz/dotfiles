@@ -5,3 +5,5 @@ set visualbell
 
 vnoremap <C-C> y
 nnoremap Y y$
+vnoremap p "_dP
+vnoremap P "_dP

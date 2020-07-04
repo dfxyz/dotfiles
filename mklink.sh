@@ -1,4 +1,4 @@
-#!bash
+#!/usr/bin/bash
 
 [[ -n $MSYSTEM ]] && export MSYS=winsymlinks:nativestrict
 
