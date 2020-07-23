@@ -80,7 +80,8 @@
         endif
 
         if has("win32")
-            set guifont=Ubuntu_Mono:h12
+            set guifont=Fira_Code:h10.5
+            set guifontwide=新宋体:h12
         else
             set guifont=Ubuntu\ Mono\ 12
         endif
