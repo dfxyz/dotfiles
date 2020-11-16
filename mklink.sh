@@ -10,7 +10,7 @@ function mklink() {
 cd $(dirname $0)
 for file in $(echo .*); do
     case $file in
-        .|..|.git|.gitignore)
+        .|..|.git|.gitignore|.gitmodules)
             continue
             ;;
         .bashrc)
@@ -20,10 +20,7 @@ for file in $(echo .*); do
             [[ -n $(command -v zsh) ]] && mklink $file
             ;;
         .ideavimrc)
-            [[ -n $(ls ~/.Idea* 2>/dev/null) ]] && mklink $file
-            ;;
-        .mintty)
-            [[ -n $(command -v mintty) ]] && mklink $file
+            [[ $OS = Windows_NT ]] && mklink $file
             ;;
         *)
             mklink $file

@@ -1,3 +1,2 @@
 .ssh/*
 !.ssh/authorized_keys
-.vim/

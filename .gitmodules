@@ -1,0 +1,3 @@
+[submodule ".vim/pack/default/start/CandyPaper.vim"]
+	path = .vim/pack/default/start/CandyPaper.vim
+	url = https://github.com/dfxyz/CandyPaper.vim
