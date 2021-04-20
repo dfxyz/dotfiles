@@ -80,10 +80,9 @@
         endif
 
         if has("win32")
-            set guifont=Fira_Code:h10.5
-            set guifontwide=新宋体:h12
+            set guifont=Fira_Code:h11
         else
-            set guifont=Ubuntu\ Mono\ 12
+            set guifont=Fira\ Code\ 11
         endif
 
         set columns=84 lines=40
