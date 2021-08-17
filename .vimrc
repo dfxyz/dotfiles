@@ -82,15 +82,18 @@
             set guifont=Fira\ Code\ 10
         endif
 
-        function s:set_columns(len)
+        function s:set_columns(len, check_tagbar)
             let l:numberwidth = float2nr(log10(line("$"))) + 2
             let l:numberwidth = max([&numberwidth, l:numberwidth])
+            if a:check_tagbar && tagbar#IsOpen()
+                let l:numberwidth = l:numberwidth + g:tagbar_width
+            endif
             let &columns = a:len + l:numberwidth
         endfunction
-        autocmd BufEnter * call s:set_columns(120)
+        autocmd BufEnter * call s:set_columns(120, 1)
 
-        call s:set_columns(120)
-        set lines=60
+        call s:set_columns(120, 0)
+        set lines=50
 
         set guioptions-=r
         set guioptions-=L
@@ -107,6 +110,7 @@
     nnoremap <C-V> P
     inoremap <C-V> <C-O>P
     nnoremap Y y$
+    nnoremap <F3> :Tagbar<CR>
     nnoremap <F4> :tabnew<CR>
     vnoremap p "_dP
     vnoremap P "_dP
@@ -114,6 +118,8 @@
 
 " Others: {
     let g:is_bash=1
+    let g:tagbar_sort=0
+    let g:tagbar_position='topleft vertical'
 " }
 
 " vim: fdm=marker fmr={,}
