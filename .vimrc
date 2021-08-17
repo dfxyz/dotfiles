@@ -65,9 +65,6 @@
 
     set visualbell
     set t_vb=
-
-    set colorcolumn=80
-    autocmd FileType java,html,xml setlocal colorcolumn=120
 " }
 
 " GUI: {
@@ -80,25 +77,23 @@
         endif
 
         if has("win32")
-            set guifont=Fira_Code:h11
+            set guifont=Fira_Code:h10
         else
-            set guifont=Fira\ Code\ 11
+            set guifont=Fira\ Code\ 10
         endif
 
-        set columns=84 lines=40
-        function s:set_columns()
-            let l:columns = &colorcolumn
-            if &number
-                let l:numberwidth = float2nr(log10(line("$"))) + 2
-                let l:columns += max([&numberwidth, l:numberwidth])
-            endif
-            if l:columns > &columns
-                let &columns = l:columns
-            endif
+        function s:set_columns(len)
+            let l:numberwidth = float2nr(log10(line("$"))) + 2
+            let l:numberwidth = max([&numberwidth, l:numberwidth])
+            let &columns = a:len + l:numberwidth
         endfunction
-        autocmd BufRead * call s:set_columns()
-        autocmd OptionSet colorcolumn call s:set_columns()
+        autocmd BufEnter * call s:set_columns(120)
 
+        call s:set_columns(120)
+        set lines=60
+
+        set guioptions-=r
+        set guioptions-=L
         set guioptions-=m
         set guioptions-=e
         set guioptions-=T
