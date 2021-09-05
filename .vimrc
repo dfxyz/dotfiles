@@ -83,8 +83,11 @@
         endif
 
         function s:set_columns(len, check_tagbar)
-            let l:numberwidth = float2nr(log10(line("$"))) + 2
-            let l:numberwidth = max([&numberwidth, l:numberwidth])
+            let l:numberwidth = 0
+            if &number
+                let l:numberwidth = float2nr(log10(line("$"))) + 2
+                let l:numberwidth = max([&numberwidth, l:numberwidth])
+            endif
             if a:check_tagbar && tagbar#IsOpen()
                 let l:numberwidth = l:numberwidth + g:tagbar_width
             endif
