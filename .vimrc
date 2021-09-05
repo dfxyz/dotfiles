@@ -36,7 +36,7 @@
     let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
     colorscheme CandyPaper
 " }
-"
+
 " Indent: {
     set autoindent
     set smartindent
@@ -104,6 +104,7 @@
 " }
 
 " Keymaps: {
+    let mapleader=' '
     noremap <C-S> :update<CR>
     inoremap <C-S> <C-O>:update<CR>
     vnoremap <C-C> y

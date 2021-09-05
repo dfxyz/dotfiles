@@ -4,3 +4,6 @@
 [submodule ".vim/pack/default/start/tagbar"]
 	path = .vim/pack/default/start/tagbar
 	url = https://github.com/preservim/tagbar.git
+[submodule ".vim/pack/default/start/easy-motion"]
+	path = .vim/pack/default/start/easy-motion
+	url = https://github.com/easymotion/vim-easymotion.git
