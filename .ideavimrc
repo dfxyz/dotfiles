@@ -3,6 +3,9 @@ set incsearch
 set hlsearch
 set visualbell
 
+let mapleader=' '
+set easymotion
+
 vnoremap <C-C> y
 nnoremap Y y$
 vnoremap p "_dP
