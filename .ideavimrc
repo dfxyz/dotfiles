@@ -10,3 +10,5 @@ vnoremap <C-C> y
 nnoremap Y y$
 vnoremap p "_dP
 vnoremap P "_dP
+nnoremap <C-P> :action EditorUp<CR>
+nnoremap <C-N> :action EditorDown<CR>
