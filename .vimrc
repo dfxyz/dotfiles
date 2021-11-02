@@ -17,7 +17,6 @@
     set nobackup
     set nowritebackup
     set backspace=2
-    set wildmenu
     set clipboard^=unnamed
 " }
 
@@ -62,9 +61,7 @@
     set showcmd
     set showmatch
     set wildmenu
-
-    set visualbell
-    set t_vb=
+    set visualbell t_vb=
 " }
 
 " GUI: {
