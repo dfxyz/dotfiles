@@ -18,6 +18,7 @@
     set nowritebackup
     set backspace=2
     set clipboard^=unnamed
+    set viminfo+=n$HOME/.vim/.viminfo
 " }
 
 " Encoding: {
@@ -121,6 +122,12 @@
     let g:is_bash=1
     let g:tagbar_sort=0
     let g:tagbar_position='topleft vertical'
+" }
+
+" Override: {
+    if filereadable(expand("~/.vimrc_local"))
+        source $HOME/.vimrc_local
+    endif
 " }
 
 " vim: fdm=marker fmr={,}
