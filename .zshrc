@@ -46,4 +46,5 @@ bindkey "^[[1;5C"   forward-word            # Ctrl-Right
 # Source exports & aliases
 [[ -f ~/.exports ]] && source ~/.exports
 [[ -f ~/.aliases ]] && source ~/.aliases
+[[ -f ~/.aliases_local ]] && source ~/.aliases_local
 [[ -f ~/.sshh ]] && source ~/.sshh
