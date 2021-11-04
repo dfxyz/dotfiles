@@ -5,13 +5,13 @@ setopt KSH_ARRAYS NO_FLOW_CONTROL
 
 # History
 setopt HIST_IGNORE_ALL_DUPS
-HISTFILE=~/.zhistory
+HISTFILE=~/.zsh/zhistory
 HISTSIZE=1000
 SAVEHIST=1000
 
 # Completion
 autoload -Uz compinit
-compinit
+compinit -d ~/.zsh/zcompdump
 if [[ -n $MSYSTEM ]]; then
     DRIVES=$(mount | sed -n 's|^[A-Z]: on /\([a-z]\).*|\1|p')
     zstyle ':completion:*' fake-files /: "/:$DRIVES"
