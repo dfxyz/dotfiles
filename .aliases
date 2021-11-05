@@ -14,7 +14,7 @@ alias fgrep='fgrep --color=auto'
 
 alias diff='diff --color=auto'
 
-alias sc="${sudo}systemctl"
+[[ -n $(command -v systemctl) ]] && alias sc="${sudo}systemctl"
 
 if [[ -n $(command -v pacman) ]]; then
     alias pac="${sudo}pacman -S"
@@ -38,5 +38,7 @@ if [[ -n $(command -v apt-get) ]]; then
 fi
 
 unset sudo
+
+[[ -f ~/.aliases_local ]] && source ~/.aliases_local
 
 # vim: ft=sh

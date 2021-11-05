@@ -1,7 +1,12 @@
 # DF_XYZ's Bash Configurations
 
 # Source global definitions
-[[ -f /etc/bashrc ]] && source /etc/bashrc
+[[ -f /etc/bash.bashrc ]] && source /etc/bash.bashrc
+
+# History
+mkdir -p ~/.cache
+HISTFILE=~/.cache/.bash_history
+HISTSIZE=1000
 
 # Window title & prompt
 [[ -n $SSH_CONNECTION ]] && { remoteMarker=*; remoteTitle=' (remote)'; }
@@ -22,7 +27,4 @@ fi
 PS1=$PS1$'\n$promptMarker '
 
 # Source exports & aliases
-[[ -f ~/.exports ]] && source ~/.exports
-[[ -f ~/.aliases ]] && source ~/.aliases
-[[ -f ~/.aliases_local ]] && source ~/.aliases_local
-[[ -f ~/.sshh ]] && source ~/.sshh
+[[ -f ~/.sources ]] && source ~/.sources

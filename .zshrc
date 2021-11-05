@@ -5,13 +5,14 @@ setopt KSH_ARRAYS NO_FLOW_CONTROL
 
 # History
 setopt HIST_IGNORE_ALL_DUPS
-HISTFILE=~/.zhistory
+mkdir -p ~/.cache
+HISTFILE=~/.cache/.zsh_history
 HISTSIZE=1000
-SAVEHIST=1000
+SAVEHIST=$HISTSIZE
 
 # Completion
 autoload -Uz compinit
-compinit
+compinit -d ~/.cache/.zcompdump
 if [[ -n $MSYSTEM ]]; then
     DRIVES=$(mount | sed -n 's|^[A-Z]: on /\([a-z]\).*|\1|p')
     zstyle ':completion:*' fake-files /: "/:$DRIVES"
@@ -44,7 +45,4 @@ bindkey "^[[1;5D"   backward-word           # Ctrl-Left
 bindkey "^[[1;5C"   forward-word            # Ctrl-Right
 
 # Source exports & aliases
-[[ -f ~/.exports ]] && source ~/.exports
-[[ -f ~/.aliases ]] && source ~/.aliases
-[[ -f ~/.aliases_local ]] && source ~/.aliases_local
-[[ -f ~/.sshh ]] && source ~/.sshh
+[[ -f ~/.sources ]] && source ~/.sources

@@ -1,15 +1,15 @@
 " DF_XYZ's Vim Configuration
 
 " General: {
+    filetype plugin indent on
+    syntax on
+
+    set nocompatible
+
     if has("win32")
         set runtimepath^=$HOME/.vim
         set packpath^=$HOME/.vim
     endif
-
-    set nocompatible
-
-    filetype plugin indent on
-    syntax on
 
     set autoread
     set autochdir
