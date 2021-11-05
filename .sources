@@ -1,4 +1,5 @@
 [[ -f ~/.exports ]] && source ~/.exports
 [[ -f ~/.aliases ]] && source ~/.aliases
+[[ -f ~/.sshh ]] && source ~/.sshh
 
 # vim: ft=sh
