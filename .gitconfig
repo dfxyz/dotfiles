@@ -12,9 +12,9 @@
     br = branch
     co = checkout
     cm = commit
-    amd = commit -a --amend
-    lg = log --graph \
-        --format='%C(cyan)%h%Creset %s %Cgreen%cr %C(yellow)(%an)%Creset'
+    amd = commit --amend
+    lg = log --graph --format='%C(blue)%h %C(green)%ci %C(yellow)%an%C(red)%d\n%s\n'
+    lga = lg --all
     mg = merge --no-ff
     pf = push -f
     st = status
