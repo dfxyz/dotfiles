@@ -13,7 +13,7 @@
     co = checkout
     cm = commit
     amd = commit --amend
-    lg = log --graph --format='%C(blue)%h %C(green)%ci %C(yellow)%an%C(red)%d\n%s\n'
+    lg = log --graph --format='%C(blue)%h %C(green)%ci %C(yellow)%an%C(red)%d\n%s\n%b\n'
     lga = lg --all
     mg = merge --no-ff
     pf = push -f
