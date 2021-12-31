@@ -6,10 +6,9 @@ set visualbell
 let mapleader=' '
 set easymotion
 
-sethandler <C-C> n-v:ide i:vim
+vnoremap <C-C> y
+sethandler <C-V> a:ide
 sethandler <C-S> a:ide
-sethandler <C-P> n:ide i-v:vim
-sethandler <C-N> n:ide i-v:vim
 nnoremap Y y$
 vnoremap p "_dP
 vnoremap P "_dP
