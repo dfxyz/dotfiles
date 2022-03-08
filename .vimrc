@@ -81,6 +81,9 @@
         endif
 
         function s:set_columns(len, check_tagbar)
+            if expand("<afile>") =~ "^__Tagbar__."
+                return
+            endif
             let l:numberwidth = 0
             if &number
                 let l:numberwidth = float2nr(log10(line("$"))) + 2
@@ -89,7 +92,10 @@
             if a:check_tagbar && tagbar#IsOpen()
                 let l:numberwidth = l:numberwidth + g:tagbar_width
             endif
-            let &columns = a:len + l:numberwidth
+            let l:columns = a:len + l:numberwidth
+            if &columns != l:columns
+                let &columns = l:columns
+            endif
         endfunction
         autocmd BufEnter * call s:set_columns(120, 1)
 
