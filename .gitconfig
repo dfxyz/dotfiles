@@ -5,6 +5,9 @@
     name = DF_XYZ
     email = dfxyz1@gmail.com
 
+[init]
+	defaultBranch = master
+
 [push]
     default = simple
 
