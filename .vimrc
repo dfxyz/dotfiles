@@ -18,6 +18,9 @@
     set nowritebackup
     set backspace=2
     set clipboard^=unnamed
+    set laststatus=2
+    set shortmess+=F
+    set shortmess-=S
     set viminfo+=n$HOME/.vim/.viminfo
 " }
 
@@ -93,7 +96,7 @@
                 let l:numberwidth = l:numberwidth + g:tagbar_width
             endif
             let l:columns = a:len + l:numberwidth
-            if &columns != l:columns
+            if &columns < l:columns
                 let &columns = l:columns
             endif
         endfunction
