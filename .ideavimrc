@@ -1,14 +1,18 @@
 set clipboard^=unnamed
+set belloff=all
+
 set incsearch
 set hlsearch
-set visualbell
 
-let mapleader=' '
+let mapleader="\\"
 set easymotion
 
-vnoremap <C-C> y
-sethandler <C-V> a:ide
 sethandler <C-S> a:ide
+sethandler <C-V> a:ide
+
 nnoremap Y y$
-vnoremap p "_dP
-vnoremap P "_dP
+vnoremap p "_dgP
+vnoremap P "_dgP
+
+vnoremap <C-C> y
+nnoremap <C-L> :nohl<CR>

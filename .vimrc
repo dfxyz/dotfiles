@@ -1,142 +1,110 @@
-" DF_XYZ's Vim Configuration
+vim9script
+# DF_XYZ's Vim Configurations
 
-" General: {
-    filetype plugin indent on
-    syntax on
+# Paths {{{
+if has("win32")
+  set runtimepath^=$HOME/.vim
+  set packpath^=$HOME/.vim
+endif
+set viminfofile=$HOME/.vim/.viminfo
+# }}}
 
-    set nocompatible
+# Filetype & Syntax {{{
+filetype plugin indent on
+syntax on
+# }}}
 
-    if has("win32")
-        set runtimepath^=$HOME/.vim
-        set packpath^=$HOME/.vim
-    endif
+# Appearance {{{
+set background=light
+colorscheme CandyPaper
 
-    set autoread
-    set autochdir
-    set noswapfile
-    set nobackup
-    set nowritebackup
-    set backspace=2
-    set clipboard^=unnamed
-    set laststatus=2
-    set shortmess+=F
-    set shortmess-=S
-    set viminfo+=n$HOME/.vim/.viminfo
-" }
+if has("gui_running")
+  set guioptions=
+  set guifont=Fira_Code:h10
+  set columns=125
+  set lines=50
+else
+  set termguicolors
+  set t_8f=[38;2;%lu;%lu;%lum
+  set t_8b=[48;2;%lu;%lu;%lum
+endif
 
-" Encoding: {
-    set encoding=utf-8
-    set fileencoding=utf-8
-    set fileencodings=ucs-bom,utf-8,chinese
-    set fileformat=unix
-    set fileformats=unix,dos,mac
-" }
+set hlsearch
+set incsearch
 
-" Color Scheme: {
-    set background=light
-    set termguicolors
-    let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
-    let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
-    colorscheme CandyPaper
-" }
+set number
+set cursorline
+set showcmd
+set showmatch
+set wildmenu
 
-" Indent: {
-    set autoindent
-    set smartindent
-    set expandtab
-    set shiftwidth=4
-    set tabstop=4
-    set softtabstop=4
-" }
+set laststatus=2
+set shortmess=filnxtToOF
 
-" Code Folding: {
-    set foldlevelstart=99
-    set foldmethod=indent
-    autocmd FileType c,cpp,java,go setlocal foldmethod=syntax
-    autocmd FileType css,javascript setlocal foldmethod=marker foldmarker={,}
-" }
+def LineAndCharacter(): string
+  const pos = getcurpos()
+  const line = pos[1]
+  const column = pos[2]
+  const character = strcharlen(strpart(getline("."), 0, column - 1)) + 1
+  return string(line) .. ":" .. string(character)
+enddef
+&statusline = "%F\ %h%r%m%=%y[%{&fenc}/%{&ff}]%15.{" .. expand("<SID>") .. "LineAndCharacter()}%10.P"
+# }}}
 
-" UI: {
-    set number
-    set cursorline
-    set ruler
-    set incsearch
-    set hlsearch
-    set showcmd
-    set showmatch
-    set wildmenu
-    set visualbell t_vb=
-" }
+# Basic Keymaps {{{
+def InsertModePaste()
+  var eol = col('.') >= col('$') - 1
+  if eol
+    normal! p
+    startinsert!
+  else
+    normal! gP
+  endif
+enddef
 
-" GUI: {
-    autocmd GUIEnter * set t_vb=
+nnoremap Y y$
+vnoremap p "_dgP
+vnoremap P "_dgP
+nnoremap <C-S> :update<CR>
+inoremap <C-S> <C-O>:update<CR>
+vnoremap <C-C> y
+nnoremap <C-V> gP
+vnoremap <C-V> #_dgP
+inoremap <C-V> <C-O>:call <SID>InsertModePaste()<CR>
+nnoremap <F4> :tabnew<CR>
+nnoremap <C-L> :nohlsearch<CR>
+# }}}
 
-    if has("gui_running")
-        if has("win32")
-            source $VIMRUNTIME/delmenu.vim
-            source $VIMRUNTIME/menu.vim
-        endif
+# Encoding & EOL {{{
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=ucs-bom,utf-8,chinese,latin1
 
-        if has("win32")
-            set guifont=Fira_Code:h10
-        else
-            set guifont=Fira\ Code\ 10
-        endif
+set fileformat=unix
+set fileformats=unix,dos
+# }}}
 
-        function s:set_columns(len, check_tagbar)
-            if expand("<afile>") =~ "^__Tagbar__."
-                return
-            endif
-            let l:numberwidth = 0
-            if &number
-                let l:numberwidth = float2nr(log10(line("$"))) + 2
-                let l:numberwidth = max([&numberwidth, l:numberwidth])
-            endif
-            if a:check_tagbar && tagbar#IsOpen()
-                let l:numberwidth = l:numberwidth + g:tagbar_width
-            endif
-            let l:columns = a:len + l:numberwidth
-            if &columns < l:columns
-                let &columns = l:columns
-            endif
-        endfunction
-        autocmd BufEnter * call s:set_columns(120, 1)
+# Indent {{{
+set autoindent
+set smartindent
+set expandtab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+# }}}
 
-        call s:set_columns(120, 0)
-        set lines=50
+# Fold {{{
+set foldmethod=syntax
+autocmd FileType python setlocal foldmethod=indent
+# }}}
 
-        set guioptions-=r
-        set guioptions-=L
-        set guioptions-=m
-        set guioptions-=e
-        set guioptions-=T
-    endif
-" }
+# Other Behaviors {{{
+set autochdir
+set autoread
+set backspace=indent,eol,start
+set belloff=all
+set clipboard=unnamed
+set nojoinspaces
+# }}}
 
-" Keymaps: {
-    let mapleader=' '
-    noremap <C-S> :update<CR>
-    inoremap <C-S> <C-O>:update<CR>
-    vnoremap <C-C> y
-    nnoremap <C-V> P
-    inoremap <C-V> <C-O>P
-    nnoremap Y y$
-    nnoremap <F3> :Tagbar<CR>
-    nnoremap <F4> :tabnew<CR>
-    vnoremap p "_dP
-    vnoremap P "_dP
-" }
-
-" Others: {
-    let g:is_bash=1
-    let g:tagbar_sort=0
-    let g:tagbar_position='topleft vertical'
-" }
-
-" Override: {
-    if filereadable(expand("~/.vimrc_local"))
-        source $HOME/.vimrc_local
-    endif
-" }
-
-" vim: fdm=marker fmr={,}
+# vim: fdm=marker sw=2 ts=2 sts=2
