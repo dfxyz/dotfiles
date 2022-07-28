@@ -14,6 +14,12 @@ filetype plugin indent on
 syntax on
 # }}}
 
+# Helper Functions {{{
+def CharIdx(column: number): number
+  return strcharlen(strpart(getline("."), 0, column - 1)) + 1
+enddef
+# }}}
+
 # Appearance {{{
 set background=light
 colorscheme CandyPaper
@@ -41,19 +47,24 @@ set wildmenu
 set laststatus=2
 set shortmess=filnxtToOF
 
-def LineAndCharacter(): string
+def LineAndCharIdx(): string
   const pos = getcurpos()
   const line = pos[1]
   const column = pos[2]
-  const character = strcharlen(strpart(getline("."), 0, column - 1)) + 1
-  return string(line) .. ":" .. string(character)
+  const charIdx = CharIdx(column)
+  return string(line) .. ":" .. string(charIdx)
 enddef
-&statusline = "%F\ %h%r%m%=%y[%{&fenc}/%{&ff}]%15.{" .. expand("<SID>") .. "LineAndCharacter()}%10.P"
+&statusline = "%F\ %h%r%m%=%y[%{&fenc}/%{&ff}]%15.{" .. expand("<SID>") .. "LineAndCharIdx()}%10.P"
 # }}}
 
 # Basic Keymaps {{{
 def InsertModePaste()
-  var eol = col('.') >= col('$') - 1
+  const currentCharIdx = CharIdx(col('.'))
+  const lastCharIdx = CharIdx(col('$'))
+  var eol = false
+  if currentCharIdx >= lastCharIdx - 1
+    eol = true
+  endif
   if eol
     normal! p
     startinsert!
