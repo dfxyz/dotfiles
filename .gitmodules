@@ -4,3 +4,9 @@
 [submodule ".vim/pack/default/start/easy-motion"]
 	path = .vim/pack/default/start/easy-motion
 	url = https://github.com/easymotion/vim-easymotion.git
+[submodule ".vim/pack/default/start/vim-lsp"]
+	path = .vim/pack/default/start/vim-lsp
+	url = https://github.com/prabirshrestha/vim-lsp.git
+[submodule ".vim/pack/default/start/vim-lsp-settings"]
+	path = .vim/pack/default/start/vim-lsp-settings
+	url = https://github.com/mattn/vim-lsp-settings.git

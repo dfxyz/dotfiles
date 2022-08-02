@@ -39,6 +39,7 @@ set hlsearch
 set incsearch
 
 set number
+set signcolumn=number
 set cursorline
 set showcmd
 set showmatch
@@ -118,6 +119,33 @@ set backspace=indent,eol,start
 set belloff=all
 set clipboard=unnamed
 set nojoinspaces
+# }}}
+
+# LSP {{{
+def OnLspBufferEnabled()
+  setlocal omnifunc=lsp#complete
+  setlocal tagfunc=lsp#tagfunc
+  inoremap <buffer> <C-Space> <C-X><C-O>
+  nnoremap <buffer> <F2> <plug>(lsp-rename)
+  nnoremap <buffer> <F12> <plug>(lsp-document-diagnostics)
+  nnoremap <buffer> <C-CR> <plug>(lsp-code-action)
+  nnoremap <buffer> <C-M-L> <plug>(lsp-document-format)
+  nnoremap <buffer> K <plug>(lsp-hover)
+  nnoremap <buffer> gd <plug>(lsp-definition)
+  nnoremap <buffer> gD <plug>(lsp-declaration)
+  nnoremap <buffer> gr <plug>(lsp-references)
+  nnoremap <buffer> gi <plug>(lsp-implementation)
+  nnoremap <buffer> gt <plug>(lsp-type-definition)
+  nnoremap <buffer> gT <plug>(lsp-type-hierarchy)
+  nnoremap <buffer> gs <plug>(lsp-document-symbol-search)
+  nnoremap <buffer> gS <plug>(lsp-workspace-symbol-search)
+  nnoremap <buffer> [g <plug>(lsp-previous-diagnostic)
+  nnoremap <buffer> ]g <plug>(lsp-next-diagnostic)
+enddef
+augroup LspSetupGroup
+  autocmd!
+  autocmd User lsp_buffer_enabled call OnLspBufferEnabled()
+augroup END
 # }}}
 
 # vim: fdm=marker sw=2 ts=2 sts=2
