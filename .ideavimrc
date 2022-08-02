@@ -4,7 +4,7 @@ set belloff=all
 set incsearch
 set hlsearch
 
-let mapleader="\\"
+let mapleader=" "
 set easymotion
 
 sethandler <C-S> a:ide

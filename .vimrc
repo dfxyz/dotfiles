@@ -73,6 +73,8 @@ def InsertModePaste()
   endif
 enddef
 
+g:mapleader = " "
+
 nnoremap Y y$
 vnoremap p "_dgP
 vnoremap P "_dgP
