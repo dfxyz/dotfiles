@@ -58,19 +58,8 @@ enddef
 # }}}
 
 # Basic Keymaps {{{
-def InsertModePaste()
-  const currentCharIdx = CharIdx(col('.'))
-  const lastCharIdx = CharIdx(col('$'))
-  var eol = false
-  if currentCharIdx >= lastCharIdx - 1
-    eol = true
-  endif
-  if eol
-    normal! p
-    startinsert!
-  else
-    normal! gP
-  endif
+def InsertModePaste(): string
+  return @+
 enddef
 
 g:mapleader = " "
@@ -83,7 +72,7 @@ inoremap <C-S> <C-O>:update<CR>
 vnoremap <C-C> y
 nnoremap <C-V> gP
 vnoremap <C-V> #_dgP
-inoremap <C-V> <C-O>:call <SID>InsertModePaste()<CR>
+inoremap <expr> <C-V> <SID>InsertModePaste()
 nnoremap <F4> :tabnew<CR>
 nnoremap <C-L> :nohlsearch<CR>
 # }}}
