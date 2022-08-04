@@ -21,7 +21,6 @@ enddef
 # }}}
 
 # Appearance {{{
-set background=light
 colorscheme CandyPaper
 
 if has("gui_running")
@@ -146,6 +145,12 @@ augroup LspSetupGroup
   autocmd!
   autocmd User lsp_buffer_enabled call OnLspBufferEnabled()
 augroup END
+# }}}
+
+# Local Configurations {{{
+if filereadable(expand("$HOME/.vimrc_local"))
+  source $HOME/.vimrc_local
+endif
 # }}}
 
 # vim: fdm=marker sw=2 ts=2 sts=2
