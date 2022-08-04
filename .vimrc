@@ -112,6 +112,8 @@ autocmd FileType python setlocal foldmethod=indent
 # }}}
 
 # Other Behaviors {{{
+g:is_bash = 1
+
 set autochdir
 set autoread
 set backspace=indent,eol,start
@@ -120,7 +122,7 @@ set clipboard=unnamed
 set nojoinspaces
 # }}}
 
-# LSP {{{
+# Plugin Configurations {{{
 def OnLspBufferEnabled()
   setlocal omnifunc=lsp#complete
   setlocal tagfunc=lsp#tagfunc
@@ -145,6 +147,8 @@ augroup LspSetupGroup
   autocmd!
   autocmd User lsp_buffer_enabled call OnLspBufferEnabled()
 augroup END
+
+g:AutoPairsMapSpace = 0
 # }}}
 
 # Local Configurations {{{
