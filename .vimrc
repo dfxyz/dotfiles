@@ -55,6 +55,17 @@ def LineAndCharIdx(): string
   return string(line) .. ":" .. string(charIdx)
 enddef
 &statusline = "%F\ %h%r%m%=%y[%{&fenc}/%{&ff}]%15.{" .. expand("<SID>") .. "LineAndCharIdx()}%10.P"
+
+var syntax_value = ""
+augroup ApplySyntaxHighlighting
+  autocmd ColorSchemePre * {
+    syntax_value = &l:syntax
+  }
+  autocmd ColorScheme * {
+    &l:syntax = syntax_value
+  }
+augroup END
+
 # }}}
 
 # Basic Keymaps {{{
