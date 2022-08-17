@@ -10,3 +10,6 @@
 [submodule ".vim/pack/default/start/vim-lsp-settings"]
 	path = .vim/pack/default/start/vim-lsp-settings
 	url = https://github.com/mattn/vim-lsp-settings.git
+[submodule ".vim/pack/default/start/nerdtree"]
+	path = .vim/pack/default/start/nerdtree
+	url = https://github.com/preservim/nerdtree.git

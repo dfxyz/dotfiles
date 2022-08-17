@@ -84,6 +84,7 @@ vnoremap <C-C> y
 nnoremap <C-V> gP
 vnoremap <C-V> #_dgP
 inoremap <expr> <C-V> <SID>InsertModePaste()
+nnoremap <F3> :NERDTreeToggle<CR>
 nnoremap <F4> :tabnew<CR>
 nnoremap <C-L> :nohlsearch<CR>
 # }}}
