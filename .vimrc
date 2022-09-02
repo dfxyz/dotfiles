@@ -109,7 +109,7 @@ set shiftwidth=4
 
 # Fold {{{
 set foldmethod=syntax
-autocmd FileType python setlocal foldmethod=indent
+set foldlevel=999
 # }}}
 
 # Other Behaviors {{{
@@ -127,6 +127,9 @@ set nojoinspaces
 def OnLspBufferEnabled()
   setlocal omnifunc=lsp#complete
   setlocal tagfunc=lsp#tagfunc
+  setlocal foldmethod=expr
+  setlocal foldexpr=lsp#ui#vim#folding#foldexpr()
+  setlocal foldtext=lsp#ui#vim#folding#foldtext()
   inoremap <buffer> <C-Space> <C-X><C-O>
   nnoremap <buffer> <F2> <plug>(lsp-rename)
   nnoremap <buffer> <F12> <plug>(lsp-document-diagnostics)
@@ -148,8 +151,6 @@ augroup LspSetupGroup
   autocmd!
   autocmd User lsp_buffer_enabled call OnLspBufferEnabled()
 augroup END
-
-g:AutoPairsMapSpace = 0
 # }}}
 
 # Local Configurations {{{
