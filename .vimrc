@@ -82,7 +82,7 @@ nnoremap <C-S> :update<CR>
 inoremap <C-S> <C-O>:update<CR>
 vnoremap <C-C> y
 nnoremap <C-V> gP
-vnoremap <C-V> #_dgP
+vnoremap <C-V> "_dgP
 inoremap <expr> <C-V> <SID>InsertModePaste()
 nnoremap <F3> :NERDTreeToggle<CR>
 nnoremap <F4> :tabnew<CR>
