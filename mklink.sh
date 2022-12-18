@@ -19,7 +19,7 @@ for file in $(echo .*); do
         .zshrc)
             [[ -n $(command -v zsh) ]] && mklink $file
             ;;
-        .ideavimrc)
+        .ideavimrc|.wslconfig)
             [[ $OS = Windows_NT ]] && mklink $file
             ;;
         *)
