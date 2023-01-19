@@ -1,11 +1,9 @@
 " DF_XYZ's Vim Configurations
 
 " Paths {{{
+set runtimepath^=$HOME/.vim
+let &packpath = &runtimepath
 if !has("nvim")
-  if has("win32")
-    set runtimepath^=$HOME/.vim
-    let &packpath = &runtimepath
-  endif
   set viminfofile=$HOME/.vim/.viminfo
 endif
 " }}}
