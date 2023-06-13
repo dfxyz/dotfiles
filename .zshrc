@@ -11,6 +11,7 @@ HISTSIZE=1000
 SAVEHIST=$HISTSIZE
 
 # Completion
+fpath=(~/.zsh/completion ${fpath[@]})
 autoload -Uz compinit
 compinit -d ~/.cache/.zcompdump
 if [[ -n $MSYSTEM ]]; then
