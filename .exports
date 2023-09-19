@@ -1,7 +1,11 @@
 export LANG='zh_CN.UTF-8'
 export LC_ALL='zh_CN.UTF-8'
 
-export EDITOR='vim'
+if command -v gvim >/dev/null 2>&1; then
+    export EDITOR='gvim'
+else
+    export EDITOR='vim'
+fi
 
 export PYTHONSTARTUP=~/.pythonrc
 [[ -n $MSYS ]] && export PYTHONSTARTUP=`cygpath -w $PYTHONSTARTUP`
