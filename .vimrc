@@ -4,7 +4,7 @@
 set runtimepath^=$HOME/.vim
 let &packpath = &runtimepath
 if !has("nvim")
-  set viminfofile=$HOME/.vim/.viminfo
+  set viminfofile=$HOME/.cache/viminfo
 endif
 " }}}
 

@@ -5,7 +5,7 @@
 
 # History
 mkdir -p ~/.cache
-HISTFILE=~/.cache/.bash_history
+HISTFILE=~/.cache/bash_history
 HISTSIZE=1000
 
 # Window title & prompt

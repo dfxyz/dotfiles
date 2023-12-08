@@ -10,7 +10,7 @@ fi
 export PYTHONSTARTUP=~/.pythonrc
 [[ -n $MSYS ]] && export PYTHONSTARTUP=`cygpath -w $PYTHONSTARTUP`
 
-export LESSHISTFILE=~/.cache/.lesshst
+export LESSHISTFILE=~/.cache/lesshst
 export LESS_TERMCAP_mb=$'\e[1;31m'
 export LESS_TERMCAP_md=$'\e[1;34m'
 export LESS_TERMCAP_me=$'\e[0m'
