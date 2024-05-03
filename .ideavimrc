@@ -4,6 +4,8 @@ set belloff=all
 set incsearch
 set hlsearch
 
+set ideajoin
+
 let mapleader=" "
 set easymotion
 
