@@ -82,7 +82,6 @@ vnoremap <C-C> y
 nnoremap <C-V> gP
 vnoremap <C-V> "_dgP
 inoremap <expr> <C-V> <SID>insert_mode_paste()
-nnoremap <F3> :NERDTreeToggle<CR>
 nnoremap <F4> :tabnew<CR>
 nnoremap <C-L> :nohlsearch<CR>
 " }}}
@@ -118,7 +117,9 @@ set autoread
 set backspace=indent,eol,start
 set belloff=all
 set clipboard=unnamed
+set nobackup
 set nojoinspaces
+set noswapfile
 " }}}
 
 " Local Configurations {{{

@@ -4,6 +4,3 @@
 [submodule ".vim/pack/default/start/easy-motion"]
 	path = .vim/pack/default/start/easy-motion
 	url = https://github.com/easymotion/vim-easymotion.git
-[submodule ".vim/pack/default/start/nerdtree"]
-	path = .vim/pack/default/start/nerdtree
-	url = https://github.com/preservim/nerdtree.git
