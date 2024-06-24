@@ -1,7 +1,5 @@
 #!/usr/bin/bash
 
-[[ -n $MSYSTEM ]] && export MSYS=winsymlinks:nativestrict
-
 function mklink() {
     rm -rf $HOME/$1
     ln -s $PWD/$1 $HOME
@@ -19,7 +17,7 @@ for file in $(echo .*); do
         .zshrc)
             [[ -n $(command -v zsh) ]] && mklink $file
             ;;
-        .ideavimrc|.wslconfig)
+        .ideavimrc)
             [[ $OS = Windows_NT ]] && mklink $file
             ;;
         *)

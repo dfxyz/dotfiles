@@ -1,12 +1,12 @@
+[init]
+    defaultBranch = master
+
 [core]
 	autocrlf = input
 
 [user]
     name = DF_XYZ
     email = dfxyz1@gmail.com
-
-[init]
-	defaultBranch = master
 
 [push]
     default = simple
@@ -27,3 +27,6 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
+[credential "helperselector"]
+	selected = wincred
