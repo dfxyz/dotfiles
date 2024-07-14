@@ -6,6 +6,11 @@ let &packpath = &runtimepath
 if !has("nvim")
   set viminfofile=$HOME/.cache/viminfo
 endif
+
+let s:plugin_dir = "~/.vim/pack/default/start/"
+function s:plugin_exists(name) abort
+  return !empty(glob(expand(s:plugin_dir) . a:name))
+endfunction
 " }}}
 
 " Filetype & Syntax {{{
@@ -14,7 +19,9 @@ syntax on
 " }}}
 
 " Appearance {{{
-colorscheme CandyPaper
+if <SID>plugin_exists("CandyPaper.vim")
+  colorscheme CandyPaper
+endif
 
 if has("gui_running")
   set guioptions=
@@ -26,7 +33,6 @@ else
   set t_8f=[38;2;%lu;%lu;%lum
   set t_8b=[48;2;%lu;%lu;%lum
 endif
-
 set hlsearch
 set incsearch
 
@@ -84,6 +90,54 @@ vnoremap <C-V> "_dgP
 inoremap <expr> <C-V> <SID>insert_mode_paste()
 nnoremap <F4> :tabnew<CR>
 nnoremap <C-L> :nohlsearch<CR>
+nnoremap <C-F12> :terminal<CR>
+
+if <SID>plugin_exists("nerdtree")
+  nnoremap <silent> <F3> :NERDTreeToggle<CR>
+  nnoremap <silent> <leader>nf :NERDTreeFind<CR>
+endif
+
+if <SID>plugin_exists("coc.nvim")
+  nnoremap <silent> K :call CocAction("doHover")<CR>
+
+  inoremap <silent><expr> <CR> coc#pum#visible() ? coc#_select_confirm() : "\<CR>"
+  inoremap <silent><expr> <C-Space> coc#refresh()
+
+  nnoremap <silent> [d <Plug>(coc-diagnostic-prev)
+  nnoremap <silent> ]d <Plug>(coc-diagnostic-next)
+  nnoremap <silent> [e <Plug>(coc-diagnostic-prev-error)
+  nnoremap <silent> ]e <Plug>(coc-diagnostic-next-error)
+
+  nnoremap <silent> gd <Plug>(coc-definition)
+  nnoremap <silent> gD <Plug>(coc-declaration)
+  nnoremap <silent> gi <Plug>(coc-implementation)
+  nnoremap <silent> gt <Plug>(coc-type-definition)
+  nnoremap <silent> gr <Plug>(coc-references)
+  nnoremap <silent> gs :CocList symbols<CR>
+
+  nnoremap <silent> <F2> :call CocAction("rename")<CR>
+  nnoremap <silent> <S-F6> :call CocAction("refactor")<CR>
+
+  nnoremap <silent> <leader>fm <Plug>(coc-format)
+  vnoremap <silent> <leader>fm <Plug>(coc-format-selected)
+
+  nnoremap <silent> <M-CR> <Plug>(coc-codeaction-cursor)
+
+  function s:toggle_outline() abort
+    let winid = coc#window#find("cocViewId", "OUTLINE")
+    if winid == -1
+      call CocAction("showOutline", 1)
+    else
+      call coc#window#close(winid)
+    endif
+  endfunction
+  nnoremap <silent> <F6> :call <SID>toggle_outline()<CR>
+
+  nnoremap <silent> <leader>ci :call CocAction("showIncomingCalls")<CR>
+  nnoremap <silent> <leader>co :call CocAction("showOutgoingCalls")<CR>
+  nnoremap <silent> <leader>ti :call CocAction("showSuperTypes")<CR>
+  nnoremap <silent> <leader>to :call CocAction("showSubTypes")<CR>
+endif
 " }}}
 
 " Encoding & EOL {{{
