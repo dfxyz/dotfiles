@@ -98,7 +98,7 @@ if <SID>plugin_exists("nerdtree")
 endif
 
 if <SID>plugin_exists("coc.nvim")
-  nnoremap <silent> K :call CocAction("doHover")<CR>
+  nnoremap <silent> K :call CocActionAsync("doHover")<CR>
 
   inoremap <silent><expr> <CR> coc#pum#visible() ? coc#_select_confirm() : "\<CR>"
   inoremap <silent><expr> <C-Space> coc#refresh()
@@ -115,28 +115,29 @@ if <SID>plugin_exists("coc.nvim")
   nnoremap <silent> gr <Plug>(coc-references)
   nnoremap <silent> gs :CocList symbols<CR>
 
-  nnoremap <silent> <F2> :call CocAction("rename")<CR>
-  nnoremap <silent> <S-F6> :call CocAction("refactor")<CR>
+  nnoremap <silent> <F2> :call CocActionAsync("rename")<CR>
+  nnoremap <silent> <S-F6> :call CocActionAsync("refactor")<CR>
 
   nnoremap <silent> <leader>fm <Plug>(coc-format)
   vnoremap <silent> <leader>fm <Plug>(coc-format-selected)
+  nnoremap <silent> <leader>fi :call CocActionAsync("organizeImport")<CR>
 
   nnoremap <silent> <M-CR> <Plug>(coc-codeaction-cursor)
 
   function s:toggle_outline() abort
     let winid = coc#window#find("cocViewId", "OUTLINE")
     if winid == -1
-      call CocAction("showOutline", 1)
+      call CocActionAsync("showOutline", 1)
     else
       call coc#window#close(winid)
     endif
   endfunction
   nnoremap <silent> <F6> :call <SID>toggle_outline()<CR>
 
-  nnoremap <silent> <leader>ci :call CocAction("showIncomingCalls")<CR>
-  nnoremap <silent> <leader>co :call CocAction("showOutgoingCalls")<CR>
-  nnoremap <silent> <leader>ti :call CocAction("showSuperTypes")<CR>
-  nnoremap <silent> <leader>to :call CocAction("showSubTypes")<CR>
+  nnoremap <silent> <leader>ci :call CocActionAsync("showIncomingCalls")<CR>
+  nnoremap <silent> <leader>co :call CocActionAsync("showOutgoingCalls")<CR>
+  nnoremap <silent> <leader>ti :call CocActionAsync("showSuperTypes")<CR>
+  nnoremap <silent> <leader>to :call CocActionAsync("showSubTypes")<CR>
 endif
 " }}}
 
