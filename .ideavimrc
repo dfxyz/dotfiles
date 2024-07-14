@@ -6,8 +6,9 @@ set hlsearch
 
 set ideajoin
 
-let mapleader=" "
 set easymotion
+
+let mapleader=" "
 
 sethandler <C-S> a:ide
 sethandler <C-V> a:ide
@@ -18,3 +19,13 @@ vnoremap P "_dgP
 
 vnoremap <C-C> y
 nnoremap <C-L> :nohl<CR>
+
+nmap [e <Action>(GotoPreviousError)
+nmap ]e <Action>(GotoNextError)
+
+nmap gd <Action>(GotoDeclaration)
+nmap gt <Action>(GotoTypeDeclaration)
+nmap gi <Action>(GotoImplementation)
+
+nmap <leader>ch <Action>(CallHierarchy)
+nmap <leader>th <Action>(TypeHierarchy)
