@@ -4,3 +4,7 @@
 [submodule ".vim/pack/default/start/easy-motion"]
 	path = .vim/pack/default/start/easy-motion
 	url = https://github.com/easymotion/vim-easymotion.git
+[submodule ".vim/pack/default/start/copilot.vim"]
+	path = .vim/pack/default/start/copilot.vim
+	url = https://github.com/github/copilot.vim
+	branch = release

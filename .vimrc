@@ -110,8 +110,6 @@ set foldlevel=999
 " }}}
 
 " Other Behaviors {{{
-let g:is_bash = 1
-
 set autochdir
 set autoread
 set backspace=indent,eol,start
