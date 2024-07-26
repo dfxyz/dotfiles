@@ -28,6 +28,9 @@ if has("gui_running")
   set guifont=Fira\ Code:h10
   set columns=125
   set lines=50
+  if exists("g:neovide")
+    set guifont=Fira\ Code\ Retina:h10
+  endif
 else 
   set termguicolors
   set t_8f=[38;2;%lu;%lu;%lum
