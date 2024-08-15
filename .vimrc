@@ -7,6 +7,7 @@ if !has("nvim")
   set viminfofile=$HOME/.cache/viminfo
 endif
 
+
 let s:plugin_dir = "~/.vim/pack/default/start/"
 function s:plugin_exists(name) abort
   return !empty(glob(expand(s:plugin_dir) . a:name))
@@ -49,17 +50,34 @@ set wildmenu
 set laststatus=2
 set shortmess=filnxtToOF
 
-function! s:char_index(column)
-  return strchars(strpart(getline("."), 0, a:column - 1)) + 1
+function! s:character_index()
+  let column = getcurpos()[2]
+  return strchars(strpart(getline("."), 0, column - 1)) + 1
 endfunction
-function! s:line_and_char_index()
-  let pos = getcurpos()
-  let line = pos[1]
-  let column = pos[2]
-  let charIdx = s:char_index(column)
-  return string(line) .. ":" .. string(charIdx)
+let s:mode_mapping = {
+      \ 'n': 'NORMAL',
+      \ 'v': 'VISUAL',
+      \ 'V': 'V-LINE',
+      \ '': 'V-BLOCK',
+      \ 's': 'SELECT',
+      \ 'S': 'S-LINE',
+      \ '': 'S-BLOCK',
+      \ 'i': 'INSERT',
+      \ 'R': 'REPLACE',
+      \ 'c': 'COMMAND',
+      \ }
+function! s:editor_mode()
+  return s:mode_mapping->get(mode(), "OTHERS")
 endfunction
-let &statusline = "%F\ %h%r%m%=%y[%{&fenc}/%{&ff}]%15.{" .. expand("<SID>") .. "line_and_char_index()}%10.P"
+function! s:status_line()
+  let result = " %F %h%r%m" " full file path / help marker / read-only marker / modified marker
+  let result .= "%="
+  let result .= "[%l:%{" .. expand("<SID>") .. "character_index()}][%4.P]  " " cursor position
+  let result .= "%y[%{&fenc}/%{&ff}]" " file type / encoding / eol
+  let result .= "%10.([%{" .. expand("<SID>") .. "editor_mode()}]%) "
+  return result
+endfunction
+let &statusline = "%!" .. expand("<SID>") .. "status_line()"
 
 let s:syntax_value = ""
 function! s:save_syntax()
