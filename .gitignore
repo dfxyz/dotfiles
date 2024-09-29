@@ -2,3 +2,5 @@
 !.ssh/authorized_keys
 
 .vim/.*
+
+.*local
